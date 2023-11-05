@@ -220,6 +220,8 @@ class MASE(MultiHorizonMetric):
 
         # weight samples
         if weight is not None:
+            print(losses.shape)
+            print(weight.shape)
             losses = losses * weight.unsqueeze(-1)
 
         self._update_losses_and_lengths(losses, lengths)
