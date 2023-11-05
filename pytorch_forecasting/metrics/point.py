@@ -154,7 +154,7 @@ class WRMSE(MultiHorizonMetric):
     Defined as ``(y_pred - target)**2 weights``
     """
     def __init__(self, reduction=None, weight = None, **kwargs):
-        self.weight = weight
+        self.weight = torch.from_numpy(weight.values)
         super().__init__(reduction=reduction, **kwargs)
 
     def loss(self, y_pred: Dict[str, torch.Tensor], target):
