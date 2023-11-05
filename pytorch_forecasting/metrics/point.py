@@ -159,9 +159,9 @@ class WRMSE(MultiHorizonMetric):
 
     def loss(self, y_pred: Dict[str, torch.Tensor], target):
         loss1 = torch.pow(self.to_prediction(y_pred) - target, 2)
-        pdb.set_trace()
-        print(loss1.size)
-        print(self.weight.size)
+        # pdb.set_trace()
+        print(loss1.shape)
+        print(self.weight.shape)
         loss = loss1*self.weight
         return loss.mean()
 
