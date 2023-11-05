@@ -222,6 +222,7 @@ class MASE(MultiHorizonMetric):
         if weight is not None:
             print(losses.shape)
             print(weight.shape)
+            pdb.set_trace()
             losses = losses * weight.unsqueeze(-1)
 
         self._update_losses_and_lengths(losses, lengths)
