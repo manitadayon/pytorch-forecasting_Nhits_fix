@@ -148,6 +148,19 @@ class RMSE(MultiHorizonMetric):
         loss = torch.pow(self.to_prediction(y_pred) - target, 2)
         return loss
 
+class WRMSE(MultiHorizonMetric):
+    """
+    Weighted root mean square error
+    Defined as ``(y_pred - target)**2 weights``
+    """
+    def __init__(self, reduction=None, weight = None, **kwargs):
+        self.weight = weight
+        super().__init__(reduction=reduction, **kwargs)
+
+    def loss(self, y_pred: Dict[str, torch.Tensor], target):
+        loss = torch.pow(self.to_prediction(y_pred) - target, 2) * self.weight
+        return loss.mean()
+
 
 class MASE(MultiHorizonMetric):
     """
