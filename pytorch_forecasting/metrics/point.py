@@ -5,7 +5,7 @@ import scipy.stats
 import torch
 import torch.nn.functional as F
 from torch.nn.utils import rnn
-
+import pdb
 from pytorch_forecasting.metrics.base_metrics import MultiHorizonMetric
 from pytorch_forecasting.utils import create_mask, unpack_sequence, unsqueeze_like
 
@@ -158,7 +158,11 @@ class WRMSE(MultiHorizonMetric):
         super().__init__(reduction=reduction, **kwargs)
 
     def loss(self, y_pred: Dict[str, torch.Tensor], target):
-        loss = torch.pow(self.to_prediction(y_pred) - target, 2) * self.weight
+        loss1 = torch.pow(self.to_prediction(y_pred) - target, 2)
+        pdb.set_trace()
+        print(loss1.size)
+        print(self.weight.size)
+        loss = loss1*self.weight
         return loss.mean()
 
 
