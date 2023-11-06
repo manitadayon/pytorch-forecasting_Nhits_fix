@@ -5,7 +5,6 @@ import scipy.stats
 import torch
 import torch.nn.functional as F
 from torch.nn.utils import rnn
-import pdb
 from pytorch_forecasting.metrics.base_metrics import MultiHorizonMetric
 from pytorch_forecasting.utils import create_mask, unpack_sequence, unsqueeze_like
 
@@ -220,9 +219,6 @@ class MASE(MultiHorizonMetric):
 
         # weight samples
         if weight is not None:
-            print(losses.shape)
-            print(weight.shape)
-            # pdb.set_trace()
             # losses = losses * weight.unsqueeze(-1)
             losses = losses * weight
 
